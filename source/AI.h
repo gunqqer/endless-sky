@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_AI_H_
-#define ES_AI_H_
+#pragma once
 
 #include "Command.h"
 #include "FireCommand.h"
@@ -92,8 +91,8 @@ private:
 	bool CanPursue(const Ship &ship, const Ship &target) const;
 	// Disabled or stranded ships coordinate with other ships to get assistance.
 	void AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship);
-	bool CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel) const;
-	bool HasHelper(const Ship &ship, const bool needsFuel);
+	bool CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel, const bool needsEnergy) const;
+	bool HasHelper(const Ship &ship, const bool needsFuel, const bool needsEnergy);
 	// Pick a new target for the given ship.
 	std::shared_ptr<Ship> FindTarget(const Ship &ship) const;
 	std::shared_ptr<Ship> FindNonHostileTarget(const Ship &ship) const;
@@ -278,7 +277,3 @@ private:
 	std::map<const Government *, std::vector<Ship *>> enemyLists;
 	std::map<const Government *, std::vector<Ship *>> allyLists;
 };
-
-
-
-#endif
