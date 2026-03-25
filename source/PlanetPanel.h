@@ -52,6 +52,8 @@ protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 
+	virtual void Resize() override;
+
 
 private:
 	void TakeOffIfReady();
@@ -75,6 +77,10 @@ private:
 	bool hasOutfitter = false;
 	Sale<Ship> shipyardStock;
 	Sale<Outfit> outfitterStock;
+	// Whether the thumbnails for the ships and outfits visible in the shops have been loaded.
+	// May be set back to false if a mission could have gifted the player a ship or outfit, or
+	// added new items to the shop.
+	bool hasLoadedThumbnails = false;
 
 	std::shared_ptr<Panel> trading;
 	std::shared_ptr<Panel> bank;
